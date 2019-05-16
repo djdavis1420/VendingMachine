@@ -4,7 +4,7 @@ import models.Coin;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,8 +61,7 @@ public class CurrencyServiceTest {
     @Test
     public void countFunds_shouldReturnTotalValueOfOneQuarter() {
 
-        List<Coin> validCoins = new ArrayList<>();
-        validCoins.add(QUARTER);
+        List<Coin> validCoins = Arrays.asList(QUARTER);
 
         double actual = currencyService.countFunds(validCoins);
 
@@ -72,9 +71,7 @@ public class CurrencyServiceTest {
     @Test
     public void countFunds_shouldReturnTotalValueOfTwoQuarters() {
 
-        List<Coin> validCoins = new ArrayList<>();
-        validCoins.add(QUARTER);
-        validCoins.add(QUARTER);
+        List<Coin> validCoins = Arrays.asList(QUARTER, QUARTER);
 
         double actual = currencyService.countFunds(validCoins);
 
@@ -84,10 +81,7 @@ public class CurrencyServiceTest {
     @Test
     public void countFunds_shouldReturnTotalValueOfThreeQuarters() {
 
-        List<Coin> validCoins = new ArrayList<>();
-        validCoins.add(QUARTER);
-        validCoins.add(QUARTER);
-        validCoins.add(QUARTER);
+        List<Coin> validCoins = Arrays.asList(QUARTER, QUARTER, QUARTER);
 
         double actual = currencyService.countFunds(validCoins);
 
@@ -97,9 +91,7 @@ public class CurrencyServiceTest {
     @Test
     public void countFunds_shouldReturnTotalValueOfOneDollarAndOneQuarter() {
 
-        List<Coin> validCoins = new ArrayList<>();
-        validCoins.add(DOLLAR);
-        validCoins.add(QUARTER);
+        List<Coin> validCoins = Arrays.asList(DOLLAR, QUARTER);
 
         double actual = currencyService.countFunds(validCoins);
 
@@ -109,9 +101,7 @@ public class CurrencyServiceTest {
     @Test
     public void countFunds_shouldReturnTotalValueOfOneDimeAndOneNickel() {
 
-        List<Coin> validCoins = new ArrayList<>();
-        validCoins.add(DIME);
-        validCoins.add(NICKEL);
+        List<Coin> validCoins = Arrays.asList(DIME, NICKEL);
 
         double actual = currencyService.countFunds(validCoins);
 
@@ -121,11 +111,7 @@ public class CurrencyServiceTest {
     @Test
     public void countFunds_shouldReturnTotalValueOfOneOfEachCoinType() {
 
-        List<Coin> validCoins = new ArrayList<>();
-        validCoins.add(DOLLAR);
-        validCoins.add(QUARTER);
-        validCoins.add(DIME);
-        validCoins.add(NICKEL);
+        List<Coin> validCoins = Arrays.asList(DOLLAR, QUARTER, DIME, NICKEL);
 
         double actual = currencyService.countFunds(validCoins);
 
@@ -149,8 +135,7 @@ public class CurrencyServiceTest {
         double productCost = 1.25;
 
         List<Coin> actual = currencyService.returnCorrectChange(insertedFunds, productCost);
-        List<Coin> expected = new ArrayList<>();
-        expected.add(QUARTER);
+        List<Coin> expected = Arrays.asList(QUARTER);
 
         assertEquals(actual, expected);
     }
@@ -161,9 +146,7 @@ public class CurrencyServiceTest {
         double productCost = 1.00;
 
         List<Coin> actual = currencyService.returnCorrectChange(insertedFunds, productCost);
-        List<Coin> expected = new ArrayList<>();
-        expected.add(QUARTER);
-        expected.add(QUARTER);
+        List<Coin> expected = Arrays.asList(QUARTER, QUARTER);
 
         assertEquals(actual, expected);
     }
@@ -174,10 +157,7 @@ public class CurrencyServiceTest {
         double productCost = 0.75;
 
         List<Coin> actual = currencyService.returnCorrectChange(insertedFunds, productCost);
-        List<Coin> expected = new ArrayList<>();
-        expected.add(QUARTER);
-        expected.add(QUARTER);
-        expected.add(QUARTER);
+        List<Coin> expected = Arrays.asList(QUARTER, QUARTER, QUARTER);
 
         assertEquals(actual, expected);
     }
@@ -188,9 +168,7 @@ public class CurrencyServiceTest {
         double productCost = 0.25;
 
         List<Coin> actual = currencyService.returnCorrectChange(insertedFunds, productCost);
-        List<Coin> expected = new ArrayList<>();
-        expected.add(DOLLAR);
-        expected.add(QUARTER);
+        List<Coin> expected = Arrays.asList(DOLLAR, QUARTER);
 
         assertEquals(actual, expected);
     }
@@ -201,9 +179,7 @@ public class CurrencyServiceTest {
         double productCost = 1.35;
 
         List<Coin> actual = currencyService.returnCorrectChange(insertedFunds, productCost);
-        List<Coin> expected = new ArrayList<>();
-        expected.add(DIME);
-        expected.add(NICKEL);
+        List<Coin> expected = Arrays.asList(DIME, NICKEL);
 
         assertEquals(actual, expected);
     }
@@ -214,11 +190,7 @@ public class CurrencyServiceTest {
         double productCost = 0.10;
 
         List<Coin> actual = currencyService.returnCorrectChange(insertedFunds, productCost);
-        List<Coin> expected = new ArrayList<>();
-        expected.add(DOLLAR);
-        expected.add(QUARTER);
-        expected.add(DIME);
-        expected.add(NICKEL);
+        List<Coin> expected = Arrays.asList(DOLLAR, QUARTER, DIME, NICKEL);
 
         assertEquals(actual, expected);
     }
