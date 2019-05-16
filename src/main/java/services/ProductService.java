@@ -19,4 +19,8 @@ public class ProductService {
         selectedProduct = productsAtLocation.stream().findFirst().orElse(null);
         return productsAtLocation.stream().findAny().isPresent();
     }
+
+    public double getProductCost() {
+        return selectedProduct.getCost();
+    }
 }

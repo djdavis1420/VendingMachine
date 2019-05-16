@@ -8,8 +8,7 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -57,4 +56,13 @@ public class ProductServiceTest {
         assert service.selectedProduct.getName().equals("Snickers");
     }
 
+    @Test
+    public void getProductCost_ShouldReturnCostOfSelectedProduct() {
+        double expectedCost = 1.25;
+        service.selectedProduct = new Product("Snickers", "G8", "Candy Bar", expectedCost);
+
+        double actualCost = service.getProductCost();
+
+        assertEquals(expectedCost, actualCost, .001);
+    }
 }
