@@ -46,4 +46,15 @@ public class ProductServiceTest {
         assertFalse(actual);
     }
 
+    @Test
+    public void isProductAvailable_ShouldCacheProductOnSelectedProductProperty() {
+        String productLocation = "G8";
+        List<Product> products = Collections.singletonList(new Product("Snickers", "G8", "Candy Bar", 1.25));
+        when(database.getProductByLocation(productLocation)).thenReturn(products);
+
+        service.isProductAvailable(productLocation);
+
+        assert service.selectedProduct.getName().equals("Snickers");
+    }
+
 }
