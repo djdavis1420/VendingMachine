@@ -65,4 +65,24 @@ public class ProductServiceTest {
 
         assertEquals(expectedCost, actualCost, .001);
     }
+
+    @Test
+    public void hasSufficientFunds_shouldReturnFalseIfProductCostGreaterThanInsertedFunds() {
+        double productCost = 1.25;
+        double insertedFunds = 1.00;
+
+        boolean actual = service.hasSufficientFunds(productCost, insertedFunds);
+
+        assertFalse(actual);
+    }
+
+    @Test
+    public void hasSufficientFunds_shouldReturnTrueIfInsertedFundsAreEqualToOrGreaterThanProductCost() {
+        double productCost = 1.25;
+        double insertedFunds = 1.25;
+
+        boolean actual = service.hasSufficientFunds(productCost, insertedFunds);
+
+        assertTrue(actual);
+    }
 }
