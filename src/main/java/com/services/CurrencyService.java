@@ -1,11 +1,11 @@
-package services;
+package com.services;
 
-import models.Coin;
+import com.models.Coin;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static models.Coin.validCoins;
+import static com.models.Coin.validCoins;
 
 public class CurrencyService {
 

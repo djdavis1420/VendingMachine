@@ -1,4 +1,4 @@
-package database;
+package com.database;
 
 import com.opencsv.CSVReader;
 
@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DatabaseFileReader {
 
-    private static final String PRODUCT_DATABASE = "./src/main/java/database/ProductDatabase.csv";
+    private static final String PRODUCT_DATABASE = "./src/main/java/com/database/ProductDatabase.csv";
 
     public List<String[]> getProductListing() {
         try {

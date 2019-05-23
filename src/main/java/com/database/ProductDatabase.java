@@ -1,6 +1,6 @@
-package database;
+package com.database;
 
-import models.Product;
+import com.models.Product;
 
 import java.util.List;
 

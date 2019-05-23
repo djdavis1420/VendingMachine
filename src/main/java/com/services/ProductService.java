@@ -1,7 +1,7 @@
-package services;
+package com.services;
 
-import database.ProductDatabase;
-import models.Product;
+import com.database.ProductDatabase;
+import com.models.Product;
 
 import java.util.List;
 

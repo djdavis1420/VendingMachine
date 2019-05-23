@@ -1,4 +1,4 @@
-package database;
+package com.database;
 
 import org.junit.Before;
 import org.junit.Test;

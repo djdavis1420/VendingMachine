@@ -1,6 +1,6 @@
-package services;
+package com.services;
 
-import models.Coin;
+import com.models.Coin;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static models.Coin.*;
+import static com.models.Coin.*;
 import static org.junit.Assert.*;
 
 public class CurrencyServiceTest {
