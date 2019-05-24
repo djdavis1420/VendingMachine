@@ -20,8 +20,10 @@ public class ProductService {
         return productsAtLocation.stream().findAny().isPresent();
     }
 
-    public double getProductCost() {
-        return selectedProduct.getCost();
+    public double getProductCost(String productLocation) {
+        return (selectedProduct != null)
+                ? selectedProduct.getCost()
+                : database.selectProductByLocation(productLocation).stream().findFirst().get().getCost();
     }
 
     public boolean hasSufficientFunds(double productCost, double insertedFunds) {

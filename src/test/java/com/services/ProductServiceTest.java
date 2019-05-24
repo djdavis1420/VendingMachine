@@ -58,10 +58,23 @@ public class ProductServiceTest {
 
     @Test
     public void getProductCost_ShouldReturnCostOfSelectedProduct() {
+        String productLocation = "G8";
         double expectedCost = 1.25;
         service.selectedProduct = new Product("Snickers", "G8", "Candy Bar", expectedCost);
 
-        double actualCost = service.getProductCost();
+        double actualCost = service.getProductCost(productLocation);
+
+        assertEquals(expectedCost, actualCost, .001);
+    }
+
+    @Test
+    public void getProductCost_ShouldReturnCostOfProductNotCachedOnSelectedProductProperty() {
+        String productLocation = "H2";
+        double expectedCost = 1.25;
+        List<Product> products = Collections.singletonList(new Product("Coke", "H2", "Beverage", expectedCost));
+        when(database.selectProductByLocation(productLocation)).thenReturn(products);
+
+        double actualCost = service.getProductCost(productLocation);
 
         assertEquals(expectedCost, actualCost, .001);
     }
