@@ -48,7 +48,7 @@ public class ProductServiceTest {
     @Test
     public void isProductAvailable_ShouldCacheProductOnSelectedProductProperty() {
         String productLocation = "G8";
-        List<Product> products = Collections.singletonList(new Product("Snickers", "G8", "Candy Bar", 1.25));
+        List<Product> products = Collections.singletonList(new Product("Snickers", "G8", "Candy Bar", 1));
         when(database.selectProductByLocation(productLocation)).thenReturn(products);
 
         service.isProductAvailable(productLocation);
@@ -59,7 +59,7 @@ public class ProductServiceTest {
     @Test
     public void getProductCost_ShouldReturnCostOfSelectedProduct() {
         String productLocation = "G8";
-        double expectedCost = 1.25;
+        double expectedCost = 1;
         service.selectedProduct = new Product("Snickers", "G8", "Candy Bar", expectedCost);
 
         double actualCost = service.getProductCost(productLocation);
