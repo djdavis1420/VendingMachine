@@ -1,21 +1,21 @@
 package com.services;
 
-import com.database.ProductDatabase;
+import com.database.ProductsDatabase;
 import com.models.Product;
 
 import java.util.List;
 
 public class ProductService {
 
-    private ProductDatabase database;
+    private ProductsDatabase database;
     public Product selectedProduct;
 
-    public ProductService(ProductDatabase database) {
+    public ProductService(ProductsDatabase database) {
         this.database = database;
     }
 
     public boolean isProductAvailable(String productLocation) {
-        List<Product> productsAtLocation = database.getProductByLocation(productLocation);
+        List<Product> productsAtLocation = database.selectProductByLocation(productLocation);
         selectedProduct = productsAtLocation.stream().findFirst().orElse(null);
         return productsAtLocation.stream().findAny().isPresent();
     }

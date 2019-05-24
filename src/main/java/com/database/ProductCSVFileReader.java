@@ -8,13 +8,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class DatabaseFileReader {
+public class ProductCSVFileReader {
 
-    private static final String PRODUCT_DATABASE = "./src/main/java/com/database/ProductDatabase.csv";
+    private static final String PRODUCT_CSV = "./src/main/java/com/database/ProductCSV.csv";
 
     public List<String[]> getProductListing() {
         try {
-            Reader reader = Files.newBufferedReader(Paths.get(PRODUCT_DATABASE));
+            Reader reader = Files.newBufferedReader(Paths.get(PRODUCT_CSV));
             CSVReader csvReader = new CSVReader(reader);
             return csvReader.readAll();
         } catch (IOException ie) {

@@ -1,6 +1,6 @@
 package com.services;
 
-import com.database.ProductDatabase;
+import com.database.ProductsDatabase;
 import com.models.Product;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,11 +15,11 @@ import static org.mockito.Mockito.when;
 public class ProductServiceTest {
 
     private ProductService service;
-    private ProductDatabase database;
+    private ProductsDatabase database;
 
     @Before
     public void setup() {
-        database = mock(ProductDatabase.class);
+        database = mock(ProductsDatabase.class);
         service = new ProductService(database);
     }
 
@@ -27,7 +27,7 @@ public class ProductServiceTest {
     public void isProductAvailable_ShouldReturnTrueWhenDatabaseReturnsCollection() {
         String productLocation = "G8";
         List<Product> products = Collections.singletonList(new Product());
-        when(database.getProductByLocation(productLocation)).thenReturn(products);
+        when(database.selectProductByLocation(productLocation)).thenReturn(products);
 
         boolean actual = service.isProductAvailable(productLocation);
 
@@ -38,7 +38,7 @@ public class ProductServiceTest {
     public void isProductAvailable_ShouldReturnFalseWhenDatabaseReturnsEmptyCollection() {
         String productLocation = "G8";
         List<Product> products = Collections.emptyList();
-        when(database.getProductByLocation(productLocation)).thenReturn(products);
+        when(database.selectProductByLocation(productLocation)).thenReturn(products);
 
         boolean actual = service.isProductAvailable(productLocation);
 
@@ -49,7 +49,7 @@ public class ProductServiceTest {
     public void isProductAvailable_ShouldCacheProductOnSelectedProductProperty() {
         String productLocation = "G8";
         List<Product> products = Collections.singletonList(new Product("Snickers", "G8", "Candy Bar", 1.25));
-        when(database.getProductByLocation(productLocation)).thenReturn(products);
+        when(database.selectProductByLocation(productLocation)).thenReturn(products);
 
         service.isProductAvailable(productLocation);
 

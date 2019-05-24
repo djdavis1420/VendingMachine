@@ -15,16 +15,16 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class ProductsTableIT {
+public class ProductsDatabaseIT {
 
     @Autowired
-    private ProductsTable productsTable;
+    private ProductsDatabase productsDatabase;
 
     @Test
     public void selectProductByLocation_shouldReturnListOfTwoProductsWhenGivenLocationOfG8() {
             String productLocation = "G8";
 
-            List<Product> actual = productsTable.selectProductByLocation(productLocation);
+            List<Product> actual = productsDatabase.selectProductByLocation(productLocation);
             long expectedCount = 2;
             long actualCount = actual.stream().filter(x -> x.getName().equals("Snickers")).count();
 
@@ -35,7 +35,7 @@ public class ProductsTableIT {
     public void selectProductByLocation_shouldReturnEmptyListWhenProductNotFound() {
         String productLocation = "G2";
         List expected = Collections.emptyList();
-        List<Product> actual = productsTable.selectProductByLocation(productLocation);
+        List<Product> actual = productsDatabase.selectProductByLocation(productLocation);
         assertEquals(expected, actual);
     }
 }
