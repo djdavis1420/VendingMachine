@@ -64,4 +64,17 @@ public class VendingMachineControllerTest {
 
         verify(productService, times(1)).getProductCost(PRODUCT_SELECTION);
     }
+
+    @Test
+    public void processTransaction_shouldCallHasSufficientFundsForSelectedProduct() {
+        List<Coin> coins = Arrays.asList(DOLLAR, QUARTER, DIME, NICKEL);
+        double productCost = 1.00;
+        double totalFunds = 1.40;
+        when(productService.getProductCost(PRODUCT_SELECTION)).thenReturn(productCost);
+        when(currencyService.countFunds(coins)).thenReturn(totalFunds);
+
+        controller.processTransaction(PRODUCT_SELECTION, coins);
+
+        verify(productService, times(1)).hasSufficientFunds(productCost, totalFunds);
+    }
 }

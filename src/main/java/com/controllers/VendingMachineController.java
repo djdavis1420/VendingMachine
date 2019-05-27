@@ -23,6 +23,7 @@ public class VendingMachineController {
         double totalFunds = currencyService.countFunds(validCoins);
         boolean productIsAvailable = productService.isProductAvailable(productSelection);
         double productCost = productService.getProductCost(productSelection);
+        boolean sufficientFundsAvailable = productService.hasSufficientFunds(productCost, totalFunds);
         return null;
     }
 }
