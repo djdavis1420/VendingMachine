@@ -38,7 +38,10 @@ public class VendingMachineController {
             return transaction;
         }
 
-
-        return null;
+        List<Coin> changeToReturn = currencyService.returnCorrectChange(totalFunds, productCost);
+        transaction.setMessage("Thank You! Enjoy Your Product!");
+        transaction.setChange(changeToReturn);
+        transaction.setProduct(productService.getSelectedProduct());
+        return transaction;
     }
 }

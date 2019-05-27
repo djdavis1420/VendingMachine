@@ -1,6 +1,7 @@
 package com.controllers;
 
 import com.models.Coin;
+import com.models.Product;
 import com.models.Transaction;
 import com.services.CurrencyService;
 import com.services.ProductService;
@@ -103,5 +104,26 @@ public class VendingMachineControllerTest {
 
         assertEquals(expectedMessage, actual.getMessage());
         assertEquals(coins, actual.getChange());
+    }
+
+    @Test
+    public void processTransaction_shouldReturnChangeAndProductAndSuccessMessageWhenTransactionIsSuccessful() {
+        List<Coin> coins = Arrays.asList(DOLLAR, QUARTER, DIME, NICKEL);
+
+        String expectedMessage = "Thank You! Enjoy Your Product!";
+        List<Coin> expectedChange = Arrays.asList(QUARTER, DIME, NICKEL);
+        Product expectedProduct = new Product("Snickers", "G8", "Candy" ,1);
+
+        when(currencyService.countFunds(coins)).thenReturn(1.40);
+        when(currencyService.returnCorrectChange(anyDouble(), anyDouble())).thenReturn(expectedChange);
+        when(productService.getProductCost(AVAILABLE_SELECTION)).thenReturn(1.00);
+        when(productService.hasSufficientFunds(anyDouble(), anyDouble())).thenReturn(true);
+        when(productService.getSelectedProduct()).thenReturn(expectedProduct);
+
+        Transaction actual = controller.processTransaction(AVAILABLE_SELECTION, coins);
+
+        assertEquals(expectedMessage, actual.getMessage());
+        assertEquals(expectedChange, actual.getChange());
+        assertEquals(expectedProduct, actual.getProduct());
     }
 }

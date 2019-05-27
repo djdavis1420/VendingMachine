@@ -29,4 +29,8 @@ public class ProductService {
     public boolean hasSufficientFunds(double productCost, double insertedFunds) {
         return insertedFunds >= productCost;
     }
+
+    public Product getSelectedProduct() {
+        return selectedProduct;
+    }
 }
