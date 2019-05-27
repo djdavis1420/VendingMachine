@@ -9,15 +9,15 @@ import static com.models.Coin.validCoins;
 
 public class CurrencyService {
 
-    public boolean isValidCoin(Coin coinToValidate) {
+    public static boolean isValidCoin(Coin coinToValidate) {
         return validateWeight(coinToValidate) && validateDiameter(coinToValidate);
     }
 
-    private boolean validateWeight(Coin coinToValidate) {
+    private static boolean validateWeight(Coin coinToValidate) {
         return validCoins.stream().anyMatch(x -> x.weight == coinToValidate.weight);
     }
 
-    private boolean validateDiameter(Coin coinToValidate) {
+    private static boolean validateDiameter(Coin coinToValidate) {
         return validCoins.stream().anyMatch(x -> x.diameter == coinToValidate.diameter);
     }
 
