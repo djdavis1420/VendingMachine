@@ -32,6 +32,12 @@ public class VendingMachineController {
             return transaction;
         }
 
+        if(!sufficientFundsAvailable) {
+            transaction.setMessage("Insufficient Funds Provided");
+            transaction.setChange(coins);
+            return transaction;
+        }
+
 
         return null;
     }

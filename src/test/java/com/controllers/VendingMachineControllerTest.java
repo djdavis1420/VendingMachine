@@ -92,4 +92,16 @@ public class VendingMachineControllerTest {
         assertEquals(expectedMessage, actual.getMessage());
         assertEquals(coins, actual.getChange());
     }
+
+    @Test
+    public void processTransaction_shouldReturnAllCoinsAndInsufficientFundsMessageWhenInsufficientFundsProvided() {
+        List<Coin> coins = Arrays.asList(DOLLAR, QUARTER, DIME, NICKEL);
+        when(productService.hasSufficientFunds(anyDouble(), anyDouble())).thenReturn(false);
+        String expectedMessage = "Insufficient Funds Provided";
+
+        Transaction actual = controller.processTransaction(AVAILABLE_SELECTION, coins);
+
+        assertEquals(expectedMessage, actual.getMessage());
+        assertEquals(coins, actual.getChange());
+    }
 }
