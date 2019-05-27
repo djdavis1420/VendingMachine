@@ -21,6 +21,7 @@ public class VendingMachineController {
     public Transaction processTransaction(String productSelection, List<Coin> coins) {
         List<Coin> validCoins = coins.stream().filter(CurrencyService::isValidCoin).collect(Collectors.toList());
         double totalFunds = currencyService.countFunds(validCoins);
+        double productCost = productService.getProductCost(productSelection);
         return null;
     }
 }

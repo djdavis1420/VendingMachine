@@ -46,4 +46,13 @@ public class VendingMachineControllerTest {
 
         verify(currencyService, times(1)).countFunds(validCoins);
     }
+
+    @Test
+    public void processTransaction_shouldCallGetProductCostForSelectedProduct() {
+        List<Coin> coins = Arrays.asList(DOLLAR, QUARTER, DIME, NICKEL);
+
+        controller.processTransaction(PRODUCT_SELECTION, coins);
+
+        verify(productService, times(1)).getProductCost(PRODUCT_SELECTION);
+    }
 }
