@@ -20,18 +20,18 @@ public class VendingMachineController {
 
     public Transaction processTransaction(String productSelection, List<Coin> coins) {
         Transaction transaction = new Transaction();
-        List<Coin> validCoins = coins.stream().filter(CurrencyService::isValidCoin).collect(Collectors.toList());
-        double totalFunds = currencyService.countFunds(validCoins);
-        boolean productIsAvailable = productService.isProductAvailable(productSelection);
-        double productCost = productService.getProductCost(productSelection);
-        boolean sufficientFundsAvailable = productService.hasSufficientFunds(productCost, totalFunds);
 
+        boolean productIsAvailable = productService.isProductAvailable(productSelection);
         if(!productIsAvailable) {
             transaction.setMessage("Product Is Unavailable");
             transaction.setChange(coins);
             return transaction;
         }
 
+        List<Coin> validCoins = coins.stream().filter(CurrencyService::isValidCoin).collect(Collectors.toList());
+        double productCost = productService.getProductCost(productSelection);
+        double totalFunds = currencyService.countFunds(validCoins);
+        boolean sufficientFundsAvailable = productService.hasSufficientFunds(productCost, totalFunds);
         if(!sufficientFundsAvailable) {
             transaction.setMessage("Insufficient Funds Provided");
             transaction.setChange(coins);
