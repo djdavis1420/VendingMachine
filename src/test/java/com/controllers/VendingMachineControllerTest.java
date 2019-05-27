@@ -35,4 +35,15 @@ public class VendingMachineControllerTest {
 
         verify(currencyService, times(1)).countFunds(coins);
     }
+
+    @Test
+    public void processTransaction_shouldOnlyAcceptValidCoins() {
+        Coin invalidCoin = new Coin(100.0, 100.0, 1000.0);
+        List<Coin> coins = Arrays.asList(DOLLAR, QUARTER, DIME, NICKEL, invalidCoin);
+        List<Coin> validCoins = Arrays.asList(DOLLAR, QUARTER, DIME, NICKEL);
+
+        controller.processTransaction(PRODUCT_SELECTION, coins);
+
+        verify(currencyService, times(1)).countFunds(validCoins);
+    }
 }
