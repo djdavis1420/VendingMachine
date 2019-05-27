@@ -48,6 +48,15 @@ public class VendingMachineControllerTest {
     }
 
     @Test
+    public void processTransaction_shouldCallCheckProductAvailabilityForSelectedProduct() {
+        List<Coin> coins = Arrays.asList(DOLLAR, QUARTER, DIME, NICKEL);
+
+        controller.processTransaction(PRODUCT_SELECTION, coins);
+
+        verify(productService, times(1)).isProductAvailable(PRODUCT_SELECTION);
+    }
+
+    @Test
     public void processTransaction_shouldCallGetProductCostForSelectedProduct() {
         List<Coin> coins = Arrays.asList(DOLLAR, QUARTER, DIME, NICKEL);
 
