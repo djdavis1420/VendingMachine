@@ -1,12 +1,14 @@
 package com.services;
 
 import com.models.Coin;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.models.Coin.validCoins;
 
+@Component
 public class CurrencyService {
 
     public static boolean isValidCoin(Coin coinToValidate) {

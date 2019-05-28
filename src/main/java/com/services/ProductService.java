@@ -2,14 +2,18 @@ package com.services;
 
 import com.database.ProductsDatabase;
 import com.models.Product;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ProductService {
 
     private ProductsDatabase database;
     public Product selectedProduct;
 
+    @Autowired
     public ProductService(ProductsDatabase database) {
         this.database = database;
     }

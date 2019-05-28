@@ -4,15 +4,19 @@ import com.models.Coin;
 import com.models.Transaction;
 import com.services.CurrencyService;
 import com.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class VendingMachineController {
 
     private CurrencyService currencyService;
     private ProductService productService;
 
+    @Autowired
     public VendingMachineController(CurrencyService currencyService, ProductService productService) {
         this.currencyService = currencyService;
         this.productService = productService;
