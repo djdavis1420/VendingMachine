@@ -15,7 +15,7 @@ public class RESTController {
         this.vendingMachineController = vendingMachineController;
     }
 
-    @PostMapping
+    @PostMapping("/purchase")
     public Transaction purchase(ProductRequest productRequest) {
         return vendingMachineController.processTransaction(productRequest.getProductLocation(), productRequest.getInsertedCoins());
     }
