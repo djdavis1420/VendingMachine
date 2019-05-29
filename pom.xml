@@ -23,6 +23,7 @@
     <properties>
         <mockito-version>1.10.19</mockito-version>
         <junit-version>4.12</junit-version>
+        <spring-version>2.1.5.RELEASE</spring-version>
     </properties>
 
     <dependencies>
@@ -31,7 +32,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>2.1.5.RELEASE</version>
+            <version>${spring-version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${spring-version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -52,7 +60,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>2.1.5.RELEASE</version>
+            <version>${spring-version}</version>
             <scope>test</scope>
         </dependency>
 
