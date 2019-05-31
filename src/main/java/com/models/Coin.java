@@ -9,6 +9,8 @@ public class Coin {
     public double diameter;
     public double value;
 
+    public Coin() {}
+
     public Coin(double weight, double diameter, double value) {
         this.weight = weight;
         this.diameter = diameter;
